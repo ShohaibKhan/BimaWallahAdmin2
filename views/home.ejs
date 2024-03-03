@@ -1,0 +1,34 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Home</title>
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+</head>
+<%- include("./includes/navBar")%>
+
+    <body>
+        <h3 class="heading">Do you know ?</h3>
+        <form action="/postDYN" method="POST">
+            <div class="form">
+                <div class="row">
+                    <span><b>Title:</b></span>
+                    <input type="text" name="title" id="title" value="<%= dyn.title%>">
+                </div>
+                <div class="row">
+                    <span><b>Semi Description:</b></span>
+                    <textarea name="desc" id="desc" cols="30" rows="10"><%= dyn.semDesc%></textarea>
+                </div>
+                <div class="row">
+                    <span><b>Description:</b></span>
+                    <textarea name="desc" id="desc" cols="50" rows="10"><%= dyn.description%></textarea>
+                </div>
+                <button type="submit" class="show" style="width: 25%;">Update Do you know!</button>
+            </div>
+        </form>
+    </body>
+
+</html>

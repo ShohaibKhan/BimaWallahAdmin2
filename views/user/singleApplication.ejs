@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Application</title>
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+</head>
+<%- include("../includes/navBar")%>
+
+    <body>
+        <h3 class="heading">User Details</h3>
+        <div class="main">
+
+            <li class="item" style="display: flex; justify-content: center;">
+                <div class="details">
+                    <div>
+                        <b>Username:</b>
+                        <%= user.display_name %>
+                    </div>
+
+                    <div>
+                        <b>Phone number:</b>
+                        <%= user.phone_number %>
+                    </div>
+                    <!-- Add more user fields as needed -->
+
+                    <div>
+                        <b>Email:</b>
+                        <%= user.email %>
+                    </div>
+
+                    <%if (user.is_employer==true){%>
+                        <div>
+                            <b>is Employer:</b> YES
+                        </div>
+                        <div>
+                            <b>Work email:</b>
+                            <%= user.work_email %>
+                        </div>
+                        <%}%>
+                            <%if (user.is_agent==true){%>
+                                <div>
+                                    <b>is Agent:</b> YES
+                                </div>
+
+                                <%}%>
+
+                </div>
+            </li>
+
+        </div>
+        <h3 class="heading">Application Details</h3>
+
+        <div class="main2">
+            <div class="one">
+
+                <img src="<%= application.images[0]%>" alt="" width="48%" height="99%">
+                <img src="<%= application.images[1]%>" alt="" width="48%" height="99%">
+
+            </div>
+            <div class="two">
+                <li class="item">
+                    <div class="details">
+                        <div>
+                            <b>PAN:</b>
+                            <%= application.PAN %>
+                        </div>
+                        <div>
+                            <b>Name:</b>
+                            <%= application.panName %>(As per PAN)
+                        </div>
+
+                        <div>
+                            <b>Policy Types:</b>
+                            <% application.policyTypes.forEach(function (name) { %>
+                                <span>
+                                    <%= name%>,
+                                </span> &nbsp
+                                <%})%>
+                        </div>
+
+                    </div>
+                </li>
+            </div>
+        </div>
+
+        <div class="btns">
+
+            <div class="form">
+                <form action="/postReject" method="POST">
+                    <input type="hidden" name="userRef" id="userRef" value="<%=application.userRef%>">
+                    <button class="edit" style="width: 100%;">Reject</button>
+                </form>
+
+            </div>
+            <div class="form">
+
+                <form action="/postAccept" method="POST">
+                    <input type="hidden" name="userRef" id="userRef" value="<%=application.userRef%>">
+                    <button class="show" style="width: 100%;">Veify as Agent</button>
+                </form>
+            </div>
+        </div>
+    </body>
+
+</html>
+
+<style>
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main2,
+    .btns {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+    .one {
+        display: flex;
+        justify-content: space-around;
+        width: 50%;
+    }
+
+    .two {
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        width: 50%;
+    }
+
+    .item {
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .btns {
+        margin-top: 50px;
+        margin-bottom: 50px;
+    }
+
+    .form {
+        width: 48%;
+    }
+</style>

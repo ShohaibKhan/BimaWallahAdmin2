@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <title>Policy Types</title>
+</head>
+
+<%- include("../includes/navBar")%>
+<body>
+    <style>
+        /* Add a style block to include custom CSS */
+        .details {
+            display: flex;
+            flex-direction: row;
+            justify-content: space-around;
+            align-items: center;
+            gap: 1%;
+            width: 100%;
+        }
+        .image{
+            display: flex;
+            flex-direction: column;
+            width: 47%;
+
+        }
+        .type{
+            display: flex;
+            flex-direction: column;
+            width: 47%;
+        }
+        .image img{
+            max-width: 40;
+            min-height: 50;
+        }
+        .addPolicyType{
+            display: flex;
+            justify-content:right;
+            align-items: flex-end;
+            margin-bottom: 5%;
+            margin-right: 2%;
+        }
+        .show{
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            padding: 5px;
+            color: #fff;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+            width: fit-content;
+            
+        }
+    </style>
+    <div class="mainContainer">
+        <h3 class="heading">All Policy Types</h3>
+        <form action="/NewPolicyType" method="GET">
+            <div class="addPolicyType"><button type="submit" class="show">Add New Policy Type</button></div>
+        </form>
+        <div class="container">
+            <% if (policytypeJson.length !== 0) { %>
+                <ul class="list">
+                    <% for (const key in policytypeJson) { %>
+                        <% const policyDetails = policytypeJson[key].data; %>
+                        <li class="item">
+                            <div class="details">
+                                <div class ="image">
+                                    <b>policy Type Image:</b>
+                                        <img src="<%= policyDetails.policy_img %>" alt="one" width="30%" height="50%">
+                                </div>
+
+                                <div class ="type">
+                                    <b>policy Type:</b>
+                                    <%= policyDetails.policy_type %>
+                                </div>
+                                <!-- Add more details as needed -->
+
+                            </div>
+                        </li>
+                        <form action="/editPolicyType" method="GET">
+                            <input type="hidden" name="policyType" value='<%= policyDetails.policy_type%>' id="policytype">
+                            <input type="hidden" name="policyImage" value="<%= policyDetails.policy_img%>" id="policyImage">
+                            <input type="hidden" name="policyTypeRef" value="<%= policytypeJson[key].id%>" id="policyTypeRef">
+                            <button type="submit" class="show">Edit</button>
+                        </form>
+                    <% } %>
+                </ul>
+            <% } %>
+        </div>
+    </div>
+</body>
+
+</html>

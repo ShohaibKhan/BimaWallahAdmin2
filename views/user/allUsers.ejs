@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <title>All Users</title>
+</head>
+<%- include("../includes/navBar")%>
+
+    <body>
+        <div class="mainContainer">
+            <h3 class="heading">All Users</h3>
+            <div class="container">
+                <% if (usersJson.length !==0) { %>
+                    <ul class="list">
+                        <% usersJson.forEach(function (user) { %>
+                            <li class="item">
+                                <div class="details">
+                                    <div>
+                                        <b>Username:</b>
+                                        <%= user.display_name %>
+                                    </div>
+
+                                    <div>
+                                        <b>Phone number:</b>
+                                        <%= user.phone_number %>
+                                    </div>
+                                    <!-- Add more user fields as needed -->
+
+                                    <div>
+                                        <b>Email:</b>
+                                        <%= user.email %>
+                                    </div>
+
+                                    <%if (user.is_employer==true){%>
+                                        <div>
+                                            <b>is Employer:</b> YES
+                                        </div>
+                                        <div>
+                                            <b>Work email:</b>
+                                            <%= user.work_email %>
+                                        </div>
+                                        <%}%>
+                                            <%if (user.is_agent==true){%>
+                                                <div>
+                                                    <b>is Agent:</b> YES
+                                                </div>
+
+                                                <%}%>
+
+                                </div>
+
+
+
+
+                            </li>
+                            <form action="/unverifiedAgents" method="GET">
+                                <button type="submit" class="edit">Edit</button>
+                            </form>
+                            <% }) %>
+
+                    </ul>
+                    <%}%>
+            </div>
+        </div>
+    </body>
+
+</html>

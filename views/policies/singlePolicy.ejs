@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <title>Policy</title>
+</head>
+<%- include("../includes/navBar")%>
+
+    <body>
+        <h3 class="heading">Policy Details</h3>
+        <div class="main">
+
+            <li class="item" style="display: flex; justify-content: center;">
+                <div class="details">
+                    <div>
+                        <b>policy Type:</b>
+                        <%= policy.policy_type %>
+                    </div>
+
+                    <%if (policy.policy_type=="Motor" ){%>
+                        <div>
+                            <b>Vehicle Number:</b>
+                            <%= policy.vehicleNumber %>
+                        </div>
+
+                        <%}%>
+
+                            <div>
+                                <b>policy Provider:</b>
+                                <%= policy.policy_provider %>
+                            </div>
+
+                            <div>
+                                <b>phone number:</b>
+                                <%= policy.phoneNumber %>
+                            </div>
+
+                            <div>
+                                <b>Expiry Date:</b>
+                                <%= policy.expiry_date%>
+                            </div>
+                </div>
+            </li>
+
+        </div>
+        <div class="below">
+
+            <h3 class="heading">Policy Details</h3>
+
+            <div class="main1">
+
+                <div class="left">
+
+                    <%if (policy.images !==undefined){%>
+
+                        <div class="images">
+
+                            <%if (policy.images.length>=1){%>
+                                <div class="img">
+
+                                    <img src="<%= policy.images[0]%>" alt="one" width="100%" height="50%">
+                                </div>
+                                <%}%>
+                                    <%if (policy.images.length>=2){%>
+                                        <div class="img">
+
+                                            <img src="<%= policy.images[1]%>" alt="two" width="100%" height="50%">
+                                        </div>
+                                        <%}%>
+                                            <%if (policy.images.length>=3){%>
+                                                <div class="img">
+
+                                                    <img src="<%= policy.images[2]%>" alt="three" width="100%"
+                                                        height="50%">
+                                                </div>
+                                                <%}%>
+                                                    <%if (policy.images.length>=4){%>
+                                                        <div class="img">
+
+                                                            <img src="<%= policy.images[3]%>" alt="four" width="100%"
+                                                                height="50%">
+                                                        </div>
+                                                        <%}%>
+                        </div>
+
+
+                        <%}else{%>
+                            <embed src="<%= policy.pdfs[0]%>" type="application/pdf" width="98%" height="100%">
+                            <%}%>
+
+                </div>
+
+                <div class="right">
+                    <form action="/postPolicy" method="post">
+
+                        <div class="form">
+                            <fieldset>
+                                <legend>Fill Policy Details</legend>
+                            </fieldset>
+                            <div class="field">
+
+                                <span><b>Policy Number: </b></span><input type="text" name="policyNo" id="policyNo">
+                            </div>
+                            <div class="field">
+
+                                <span><b>Name or Number: </b></span><input type="text" name="non" id="non">
+                            </div>
+                            <input type="hidden" name="userRef" value="<%= userRef%>" id="userRef">
+                            <input type="hidden" name="policyID" value="<%= policy.policyID%>" id="policyID">
+
+
+                            <button class="show btns">save Policy</button>
+                        </div>
+                    </form>
+                </div>
+
+            </div>
+
+            <div class="main2">
+
+            </div>
+
+            <div class="btns">
+
+
+            </div>
+    </body>
+
+</html>
+
+<style>
+    .main {
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .main2 {
+        display: flex;
+        justify-content: space-around;
+        flex-wrap: wrap;
+    }
+
+
+    .item {
+
+        width: 100%;
+        height: 100%;
+    }
+
+    .btns {
+        margin-top: 50px;
+        margin-bottom: 50px;
+        width: 50%;
+    }
+
+    .left {
+        width: 40%;
+        height: 30em;
+        overflow: scroll;
+    }
+
+    .right {
+        width: 60%;
+    }
+
+    .main1 {
+        display: flex;
+        justify-content: start;
+
+    }
+
+    .form {
+        display: flex;
+        flex-direction: column;
+        justify-content: start;
+        align-items: center;
+    }
+</style>

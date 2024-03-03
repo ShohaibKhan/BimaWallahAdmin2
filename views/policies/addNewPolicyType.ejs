@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <title>Policy</title>
+</head>
+<%- include("../includes/navBar")%>
+
+    <body>
+        
+<style>
+    .field {
+        display: flex;
+        flex-direction: row;
+        margin-bottom: 10px;
+    }
+    .details {
+        display: flex;
+        flex-direction: row;
+        justify-content: flex-end;
+        align-items: center;
+    }
+    .image{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .type{
+        display: flex;
+        flex-direction: column;
+        gap: 10px;
+    }
+    .image img{
+        max-width: 40;
+        min-height: 50;
+    }
+</style>
+        <h3 class="heading">Add New Policy Type</h3>
+                <div class="right">
+                        <div class="form">
+                            <form action="/addpostPolicyTypeUpdate" method="POST" enctype="multipart/form-data">
+                                <div class="field">
+                                    <span><b>Policy Image: </b></span><input type="file" name="policyImage" id="policyImage" accept="image/*" required>
+                                </div>
+                                <div class="field">
+                                    <span><b>Policy Type : </b></span><input type="text" name="policyType" id="policyType" required>
+                                </div>
+                                <button class="show" style="width: 100%;">Add Policy Type</button>
+                            </form>
+                            </div>
+                        </div>
+                </div>
+    </body>
+
+</html>

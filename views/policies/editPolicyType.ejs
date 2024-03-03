@@ -1,0 +1,102 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="/stylesheets/allUsers.css">
+    <link rel="stylesheet" href="/stylesheets/navBar.css">
+    <title>Policy</title>
+</head>
+<%- include("../includes/navBar")%>
+
+    <body>
+        <style>
+            .main {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                align-items: center;
+                gap:10px;
+            }
+            .details {
+                display: flex;
+                flex-direction: row;
+                justify-content: space-around;
+                align-items: center;
+                gap: 1%;
+                width: 100%;
+            }
+            .image{
+                display: flex;
+                flex-direction: column;
+                width: 47%;
+    
+            }
+            .type{
+                display: flex;
+                flex-direction: column;
+                width: 47%;
+            }
+            .image img{
+                max-width: 40;
+                min-height: 50;
+            }
+            .form{
+                gap:10px;
+            }
+            .field {
+                display: flex;
+                flex-direction: row;
+                margin-bottom: 10px;
+            }
+            .edit{
+                display: flex;
+                justify-content: space-around;
+                flex-wrap: wrap;
+                padding-left: 125px;
+                padding-right: 125px;
+            }
+        </style>
+        <h3 class="heading">Exisiting Policy Type Details</h3>
+        <div class="main">
+            <li class="item" style="display: flex; justify-content: center;">
+                <div class="details">
+                    <div class ="image">
+                        <b>policy Type Image:</b>
+                            <img src="<%= policyImage%>" alt="one" width="50%" height="50%">
+                    </div>
+                    <div class ="type">
+                        <b>policy Type:</b>
+                        <%= policyType%>
+                    </div>
+                </div>
+            </li>
+        </div>
+                <div class="right">
+                    <h3 class="heading">
+                        Update Policy Type Details
+                    </h3>
+                        <div class="form">
+                            <form action="/postPolicyTypeUpdate" method="POST" enctype="multipart/form-data">
+                                <div class="field">
+                                    <span><b>Policy Image: </b></span><input type="file" name="policyImage" id="policyImage" accept="image/*" required>
+                                </div>
+                                <div class="field">
+                                    <span><b>Policy Type : </b></span><input type="text" name="policyType" id="policyType"  value="<%= policyType%>" required>
+                                </div>
+                                <input type="hidden" name="PolicyTypeRef" id="PolicyTypeRef" value="<%=policyTypeRef%>">
+                                <button class="show" style="width: 100%;">Update Policy Type</button>
+                            </form>
+                            <div class="form">
+                                <form action="/postPolicyTypeDelete" method="POST">
+                                    <input type="hidden" name="PolicyTypeRef" id="PolicyTypeRef" value="<%=policyTypeRef%>">
+                                    <input type="hidden" name="PolicyTypeFileName" id="PolicyTypeFileName" value="<%=policyImage%>">
+                                    <button class="edit" style="width: 100%;">Delete Policy Type</button>
+                                </form>
+                            </div>
+                        </div>
+                </div>
+    </body>
+
+</html>
